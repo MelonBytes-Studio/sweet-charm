@@ -7,9 +7,13 @@
   "typings": "out/index.d.ts",
   "files": [
     "out",
+	"README.md",
     "!out/tests",
     "!**/*.tsbuildinfo"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/MelonBytes-Studio/sweet-charm"
