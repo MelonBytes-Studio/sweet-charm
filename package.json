@@ -1,22 +1,26 @@
 {
   "name": "@rbxts/sweet-charm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library for @rbxts/charm that allows to create atom classes and sync them using repositories",
   "main": "out/init.luau",
   "type": "module",
   "typings": "out/index.d.ts",
-  "files": ["out", "!out/tests", "!**/*.tsbuildinfo"],
+  "files": [
+    "out",
+    "!out/tests",
+    "!**/*.tsbuildinfo"
+  ],
   "repository": {
-	"type": "git",
-	"url": "https://github.com/MelonBytes-Studio/sweet-charm"
+    "type": "git",
+    "url": "https://github.com/MelonBytes-Studio/sweet-charm"
   },
   "homepage": "https://github.com/MelonBytes-Studio/sweet-charm#readme",
   "scripts": {
     "build": "rbxtsc",
-	"devBuild": "rbxtsc --type game --rojo dev.project.json",
-	"devWatch": "rbxtsc --watch --type game --rojo dev.project.json",
-	"serve": "rojo serve dev.project.json",
-	"prepublishOnly": "npm run build"
+    "devBuild": "rbxtsc --type game --rojo dev.project.json",
+    "devWatch": "rbxtsc --watch --type game --rojo dev.project.json",
+    "serve": "rojo serve dev.project.json",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "atom",
