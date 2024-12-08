@@ -6,6 +6,10 @@
   "type": "module",
   "typings": "out/index.d.ts",
   "files": ["out", "!out/tests", "!**/*.tsbuildinfo"],
+  "repository": {
+	"type": "git",
+	"url": "https://github.com/MelonBytes-Studio/sweet-charm"
+  },
   "scripts": {
     "build": "rbxtsc",
 	"devBuild": "rbxtsc --type game --rojo dev.project.json",
