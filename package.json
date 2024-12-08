@@ -1,0 +1,43 @@
+{
+  "name": "@rbxts/sweet-charm",
+  "version": "1.0.0",
+  "description": "utility library for @rbxts/charm that wraps atoms in classes and gives more sync features",
+  "main": "out/init.luau",
+  "type": "module",
+  "typings": "out/index.d.ts",
+  "files": ["out", "!out/tests", "!**/*.tsbuildinfo"],
+  "scripts": {
+    "build": "rbxtsc",
+	"devBuild": "rbxtsc --type game --rojo dev.project.json",
+	"devWatch": "rbxtsc --watch --type game --rojo dev.project.json",
+	"serve": "rojo serve dev.project.json",
+	"prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "atom",
+    "charm",
+    "sweet"
+  ],
+  "author": "sumer_real",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@rbxts/compiler-types": "^3.0.0-types.0",
+    "@rbxts/testez": "^0.4.2-ts.0",
+    "@rbxts/types": "^1.0.813",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-roblox-ts": "^0.0.36",
+    "prettier": "^3.4.2",
+    "roblox-ts": "^3.0.0",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.17.0"
+  },
+  "dependencies": {
+    "@rbxts/charm": "^0.8.1",
+    "@rbxts/services": "^1.5.5",
+    "@rbxts/set-timeout": "^1.1.2"
+  }
+}

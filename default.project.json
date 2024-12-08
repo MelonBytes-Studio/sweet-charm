@@ -1,0 +1,8 @@
+{
+  	"name": "sweet-charm",
+	"globIgnorePaths": ["**/tests"],
+
+  	"tree": {
+    	"$path": "out"
+  	}
+}

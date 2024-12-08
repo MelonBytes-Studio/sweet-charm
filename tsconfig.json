@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "out/build.tsbuildinfo",
+    "target": "ESNext",
+    "module": "CommonJS",
+    "rootDir": "src",
+	"outDir": "out",
+    "moduleResolution": "node",
+    "baseUrl": "src/",
+    "typeRoots": ["node_modules/@rbxts"],
+
+    "declaration": true,
+
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+	"moduleDetection": "force",
+	"downlevelIteration": true,
+
+	"stripInternal": true,
+    "strict": true,
+	"noLib": true,
+
+	"experimentalDecorators": true,
+  }
+}
