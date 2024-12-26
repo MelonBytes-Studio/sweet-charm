@@ -35,6 +35,22 @@ export = function () {
 		expect(repo.getAtoms().name!.getData()).to.equal("John");
 	});
 
+	it("remove", () => {
+		const repo = new AtomRepository<{
+			name: AtomClass<string>;
+		}>();
+
+		repo.define({
+			name: new AtomClass("John"),
+		});
+
+		expect(repo.get("name")).to.be.ok();
+
+		repo.remove("name");
+
+		expect(repo.getAtoms().name).never.to.be.ok();
+	});
+
 	it("subdivide", () => {
 		const repo = new AtomRepository<{
 			name: AtomClass<string>;

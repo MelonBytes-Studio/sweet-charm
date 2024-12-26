@@ -3,7 +3,15 @@ import { Players } from "@rbxts/services";
 import { setInterval } from "@rbxts/set-timeout";
 import { AtomClass } from "atom-class";
 import { createPatch, isEmptyTable } from "sync-utils";
-import type { AtomTable, InitPayload, NewAtomsPayload, PatchPayload, Payload, Snapshot } from "types";
+import type {
+	AtomTable,
+	InitPayload,
+	NewAtomsPayload,
+	PatchPayload,
+	Payload,
+	RemoveAtomsPayload,
+	Snapshot,
+} from "types";
 
 export class ServerSyncer {
 	public isStarted = false;
@@ -29,6 +37,22 @@ export class ServerSyncer {
 				return this.sync(player, payload);
 			}
 
+			if (payload.type === "removeAtoms") {
+				const removePayload = {} as RemoveAtomsPayload;
+
+				removePayload.type = "removeAtoms";
+				removePayload.data = [];
+
+				for (const id of payload.data) {
+					if (this.atoms.has(id)) continue;
+					removePayload.data.push(id);
+				}
+
+				if (isEmptyTable(removePayload.data)) return;
+
+				return this.sync(player, removePayload);
+			}
+
 			const patchPayload = {} as PatchPayload;
 
 			patchPayload.type = "patch";
@@ -43,6 +67,24 @@ export class ServerSyncer {
 
 			this.sync(player, patchPayload);
 		});
+	}
+
+	public remove(id: string) {
+		assert(this.atoms.has(id), `Atom with "${id}" id doesn't exists in syncer.`);
+
+		this.atoms.delete(id);
+
+		if (this.newSnapshot) {
+			this.newSnapshot[id] = undefined;
+		}
+
+		const removePayload = {} as RemoveAtomsPayload;
+		removePayload.type = "removeAtoms";
+		removePayload.data = [id];
+
+		for (const player of Players.GetPlayers()) {
+			this.sync(player, removePayload);
+		}
 	}
 
 	public add(id: string, atom: AtomClass<any>) {

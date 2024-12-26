@@ -2,7 +2,6 @@ import { AtomClass } from "atom-class";
 import { ServerSyncer } from "server-syncer";
 import { AtomTable } from "types";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class AtomRepository<T extends AtomTable> {
 	public readonly syncer: ServerSyncer;
 
@@ -33,6 +32,11 @@ export class AtomRepository<T extends AtomTable> {
 		}
 
 		this.store = newStore as T;
+	}
+
+	public remove(name: keyof T) {
+		this.syncer.remove(name as string);
+		this.store[name] = undefined as never;
 	}
 
 	public subdivide() {

@@ -6,7 +6,6 @@ import type { Atom } from "@rbxts/charm";
 export type AtomTable = Record<string, AtomClass<any>>;
 export type Snapshot<T extends AtomTable> = { [K in keyof T]: T[K] extends AtomClass<infer R> ? R : never };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type PatchSnapshot<T extends AtomTable> = {
 	[K in keyof T]: DeepPartialWithNone<T[K] extends AtomClass<infer R> ? R : never>;
 };
@@ -21,12 +20,21 @@ export type NewAtomsPayload<T extends AtomTable = AtomTable> = {
 	data: Snapshot<T>;
 };
 
+export type RemoveAtomsPayload<T extends AtomTable = AtomTable> = {
+	type: "removeAtoms";
+	data: (keyof T)[];
+};
+
 export type PatchPayload<T extends AtomTable = AtomTable> = {
 	type: "patch";
 	data: PatchSnapshot<T>;
 };
 
-export type Payload<T extends AtomTable = AtomTable> = InitPayload<T> | PatchPayload<T> | NewAtomsPayload<T>;
+export type Payload<T extends AtomTable = AtomTable> =
+	| RemoveAtomsPayload<T>
+	| InitPayload<T>
+	| PatchPayload<T>
+	| NewAtomsPayload<T>;
 
 export interface ReadonlyAtom<T> {
 	getData(): T;

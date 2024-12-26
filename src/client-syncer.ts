@@ -18,6 +18,15 @@ export class ClientSyncer {
 			return;
 		}
 
+		if (payload.type === "removeAtoms") {
+			for (const id of payload.data) {
+				if (!this.atoms.has(id)) return;
+				this.atoms.delete(id);
+			}
+
+			return;
+		}
+
 		if (payload.type === "newAtoms") {
 			this.createAtomsFromSnapshot(payload.data);
 			return;

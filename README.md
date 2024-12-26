@@ -60,6 +60,8 @@ print("all atoms", repo.getAtoms());
 const subRepo = repo.subdivide();
 
 print("parent events", subRepo.get("events"));
+
+repo.remove("events")  // you can remove atom by name from repository
 ```
 
 ### AtomRepository syncer

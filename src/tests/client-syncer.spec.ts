@@ -77,4 +77,25 @@ export = function () {
 		expect(atoms.get("age")).to.be.ok();
 		expect(atoms.get("age")!.getData()).to.equal(20);
 	});
+
+	it("remove atom", () => {
+		const atoms = new Map<string, AtomClass<number>>();
+		const syncer = new ClientSyncer(atoms);
+
+		syncer.sync({
+			type: "init",
+			data: {
+				money: 100,
+			},
+		});
+
+		expect(atoms.get("money")).to.be.ok();
+
+		syncer.sync({
+			type: "removeAtoms",
+			data: ["money"],
+		});
+
+		expect(atoms.get("money")).never.to.be.ok();
+	});
 };

@@ -21,7 +21,7 @@ export = function () {
 
 		expect(dispatch).to.be.ok();
 		expect(dispatch!.type).to.equal("init");
-		expect(dispatch!.data.atom).to.equal(0);
+		expect(dispatch!.data["atom" as never]).to.equal(0);
 	});
 
 	it("new atom", () => {
@@ -42,7 +42,29 @@ export = function () {
 
 		expect(dispatch).to.be.ok();
 		expect(dispatch!.type).to.equal("newAtoms");
-		expect(dispatch!.data.newAtom).to.equal(1);
+		expect(dispatch!.data["newAtom" as never]).to.equal(1);
+
+		stop();
+	});
+
+	it("remove atom", () => {
+		const syncer = new ServerSyncer();
+		const atom = new AtomClass(0);
+
+		let dispatch: Payload | undefined = undefined;
+
+		syncer.add("atom", atom);
+
+		syncer.watchDispatch((_, payload) => {
+			dispatch = payload;
+		});
+
+		const stop = syncer.start(0);
+		syncer.remove("atom");
+
+		expect(dispatch).to.be.ok();
+		expect(dispatch!.type).to.equal("removeAtoms");
+		expect(dispatch!.data[1 as never]).to.equal("atom");
 
 		stop();
 	});
@@ -66,7 +88,7 @@ export = function () {
 
 		expect(dispatch).to.be.ok();
 		expect(dispatch!.type).to.equal("patch");
-		expect(dispatch!.data.atom).to.equal(1);
+		expect(dispatch!.data["atom" as never]).to.equal(1);
 
 		stop();
 	});
@@ -94,8 +116,8 @@ export = function () {
 
 		expect(lastPayload).to.be.ok();
 		expect(lastPayload!.type).to.equal("init");
-		expect(lastPayload!.data.parentAtom).to.equal(0);
-		expect(lastPayload!.data.atom).to.equal(0);
+		expect(lastPayload!.data["parentAtom" as never]).to.equal(0);
+		expect(lastPayload!.data["atom" as never]).to.equal(0);
 
 		stopParentSyncer();
 		stopSyncer();
@@ -125,7 +147,7 @@ export = function () {
 
 		expect(lastPayload).to.be.ok();
 		expect(lastPayload!.type).to.equal("patch");
-		expect(lastPayload!.data.parentAtom).to.equal(1);
+		expect(lastPayload!.data["parentAtom" as never]).to.equal(1);
 
 		lastPayload = undefined;
 
