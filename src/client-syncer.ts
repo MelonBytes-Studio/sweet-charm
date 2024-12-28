@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Signal } from "@rbxts/beacon";
 import { batch } from "@rbxts/charm";
 import { AtomClass } from "atom-class";
 import { applyPatch } from "sync-utils";
@@ -6,6 +7,9 @@ import { AtomTable, Payload, Snapshot } from "types";
 
 export class ClientSyncer {
 	private isHydrated = false;
+
+	public readonly atomDefined = new Signal<[name: string, atom: AtomClass<any>]>();
+	public readonly atomRemoved = new Signal<[name: string]>();
 
 	constructor(private atoms: Map<string, AtomClass<any>>) {}
 
@@ -22,6 +26,7 @@ export class ClientSyncer {
 			for (const id of payload.data) {
 				if (!this.atoms.has(id)) return;
 				this.atoms.delete(id);
+				this.atomRemoved.Fire(id);
 			}
 
 			return;
@@ -51,7 +56,10 @@ export class ClientSyncer {
 
 	private createAtomsFromSnapshot(snapshot: Snapshot<AtomTable>) {
 		for (const [id, atomData] of pairs(snapshot)) {
-			this.atoms.set(id as string, new AtomClass(atomData));
+			const atom = new AtomClass(atomData);
+
+			this.atoms.set(id as string, atom);
+			this.atomDefined.Fire(id as string, atom);
 		}
 	}
 }

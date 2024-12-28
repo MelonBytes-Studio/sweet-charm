@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/sweet-charm",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Library for @rbxts/charm that allows to create atom classes and sync them using repositories",
   "main": "out/init.luau",
   "type": "module",
@@ -48,10 +48,11 @@
     "typescript-eslint": "^8.18.2"
   },
   "dependencies": {
+    "@rbxts/beacon": "^2.1.1",
     "@rbxts/services": "^1.5.5",
     "@rbxts/set-timeout": "^1.1.2"
   },
   "peerDependencies": {
-	"@rbxts/charm": "^0.8.1"
+    "@rbxts/charm": "^0.8.1"
   }
 }
