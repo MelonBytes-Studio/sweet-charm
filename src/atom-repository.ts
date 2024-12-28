@@ -6,9 +6,8 @@ import { AtomTable } from "types";
 export class AtomRepository<T extends AtomTable> {
 	public readonly syncer: ServerSyncer;
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	public readonly atomDefined = new Signal<[name: string, atom: AtomClass<any>]>();
-	public readonly atomRemoved = new Signal<[name: string]>();
+	public readonly atomDefined = new Signal<[name: keyof T, atom: AtomClass<T[keyof T]>]>();
+	public readonly atomRemoved = new Signal<[name: keyof T]>();
 
 	private store: T = {} as T;
 	private parent?: AtomRepository<T>;
@@ -34,6 +33,10 @@ export class AtomRepository<T extends AtomTable> {
 		const atom = this.store[name] ?? this.parent?.get(name);
 		assert(atom, `Can't get atom "${name as string}", this atom doesn't exists in repository.`);
 		return atom;
+	}
+
+	public tryGetAtom<Y extends keyof T>(name: Y): T[Y] | undefined {
+		return this.store[name] ?? this.parent?.tryGetAtom(name);
 	}
 
 	public getAtoms(): Readonly<Partial<T>> {

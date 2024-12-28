@@ -17,4 +17,8 @@ export class AtomRepositoryView<T extends AtomTable> {
 		assert(atom, `Can't get atom "${name as string}", this atom doesn't exists in repository.`);
 		return atom as T[Y];
 	}
+
+	public tryGetAtom<Y extends keyof T>(name: Y): ReadonlyAtomFrom<T[Y]> | undefined {
+		return this.store.get(name as string);
+	}
 }
