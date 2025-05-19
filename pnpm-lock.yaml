@@ -11,9 +11,6 @@ importers:
       '@rbxts/beacon':
         specifier: ^2.1.1
         version: 2.1.1
-      '@rbxts/charm':
-        specifier: ^0.8.1
-        version: 0.8.1
       '@rbxts/services':
         specifier: ^1.5.5
         version: 1.5.5
@@ -24,6 +21,9 @@ importers:
       '@eslint/js':
         specifier: ^9.17.0
         version: 9.17.0
+      '@rbxts/charm':
+        specifier: ^0.10.0
+        version: 0.10.0
       '@rbxts/compiler-types':
         specifier: ^3.0.0-types.0
         version: 3.0.0-types.0
@@ -133,8 +133,8 @@ packages:
   '@rbxts/beacon@2.1.1':
     resolution: {integrity: sha512-QeFMSGj+Iijp+tHcV9eyqVyeKZ/9zp7GqRJ/hecKiHmoTu4yFcyGnUQAaX7OdQKBCgLvWMJ9wK/FXMECjFA2Kg==}
 
-  '@rbxts/charm@0.8.1':
-    resolution: {integrity: sha512-rS29lF54PL5j/s31nvH8rZaa+8UcX8g3E5wWhJ++27j4bHJiX9R7MTUH9C5/HXXM0nxMIr+Y84l++Sc4g+FxTQ==}
+  '@rbxts/charm@0.10.0':
+    resolution: {integrity: sha512-pcGpNyqNOcJ7r9UbAjFaUqU0F9Q+wCr4/2kUs8L0hh4dVhUN7t6ur4P7zAMzNuMJQG8YP47a9rq0l0/LlhLuow==}
 
   '@rbxts/compiler-types@3.0.0-types.0':
     resolution: {integrity: sha512-VGOHJPoL7+56NTatMGqQj3K7xWuzEV+aP4QD5vZiHu+bcff3kiTmtoadaF6NkJrmwfFAvbsd4Dg764ZjWNceag==}
@@ -881,7 +881,7 @@ snapshots:
 
   '@rbxts/beacon@2.1.1': {}
 
-  '@rbxts/charm@0.8.1': {}
+  '@rbxts/charm@0.10.0': {}
 
   '@rbxts/compiler-types@3.0.0-types.0': {}
 

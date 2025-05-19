@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/sweet-charm",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "Library for @rbxts/charm that allows to create atom classes and sync them using repositories",
   "main": "out/init.luau",
   "type": "module",
@@ -24,7 +24,7 @@
     "devBuild": "rbxtsc --type game --rojo dev.project.json",
     "devWatch": "rbxtsc --watch --type game --rojo dev.project.json",
     "serve": "rojo serve dev.project.json",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [
     "atom",
@@ -35,6 +35,7 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@rbxts/charm": "^0.10.0",
     "@rbxts/compiler-types": "^3.0.0-types.0",
     "@rbxts/testez": "^0.4.2-ts.0",
     "@rbxts/types": "^1.0.813",
@@ -53,6 +54,6 @@
     "@rbxts/set-timeout": "^1.1.2"
   },
   "peerDependencies": {
-    "@rbxts/charm": "^0.8.1"
+    "@rbxts/charm": "^0.10.0"
   }
 }
