@@ -1,5 +1,5 @@
-import type { AtomClass } from "atom-class";
-import type { DeepPartialWithNone } from "sync-utils";
+import type { AtomClass } from "./atom-class";
+import type { DeepPartialWithNone } from "./sync-utils";
 import type { Atom } from "@rbxts/charm";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -44,4 +44,4 @@ export interface ReadonlyAtom<T> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ReadonlyAtomFrom<T extends AtomClass<any>> = ReadonlyAtom<T extends AtomClass<infer R> ? R : never>;
+export type ReadonlyAtomFrom<T extends AtomClass<any>> = T extends AtomClass<infer R> ? ReadonlyAtom<R> : never;

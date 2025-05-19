@@ -15,10 +15,10 @@ export class AtomRepositoryView<T extends AtomTable> {
 	public get<Y extends keyof T>(name: Y): ReadonlyAtomFrom<T[Y]> {
 		const atom = this.store.get(name as string);
 		assert(atom, `Can't get atom "${name as string}", this atom doesn't exists in repository.`);
-		return atom as T[Y];
+		return atom as never;
 	}
 
 	public tryGetAtom<Y extends keyof T>(name: Y): ReadonlyAtomFrom<T[Y]> | undefined {
-		return this.store.get(name as string);
+		return this.store.get(name as string) as never;
 	}
 }

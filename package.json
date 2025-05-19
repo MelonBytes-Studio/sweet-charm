@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/sweet-charm",
-  "version": "1.3.2",
+  "version": "1.4.2",
   "description": "Library for @rbxts/charm that allows to create atom classes and sync them using repositories",
   "main": "out/init.luau",
   "type": "module",
